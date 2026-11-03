@@ -127,6 +127,7 @@ resultText = findViewById(R.id.result_text);
 ```
 
 > ❓ ¿Qué pasaría si dejaras `EditText ageEdit = findViewById(...)` dentro de `onCreate()`?
+Si declaras ageEdit como atributo de clase, pero también mantienes EditText ageEdit dentro de onCreate(), estarías creando dos variables diferentes con el mismo nombre.
 
 ## Paso 8 · Saca la lógica del botón a un método
 
