@@ -163,6 +163,7 @@ Implementa el método siguiendo este orden. En cuanto algo falle, llama a `mostr
 5. **Todo correcto**: quita el error del campo (`setError(null)`), calcula `age * FACTOR_CANINO` y muestra el resultado con `tu_edad_format`.
 
 > ❓ ¿Por qué limitar la edad a 30 evita también el desbordamiento que viste en el Paso 1?
+Porque ahora cuando me salga un número mayor a 30, en vez de cerra la aplicación, saltará un mensaje dando el error que ha surgido y como solucionarlo especificando que máximo se puede poner 30 años-
 
 ## Paso 11 · Vuelve a probar
 
