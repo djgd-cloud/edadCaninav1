@@ -178,6 +178,7 @@ Comprueba que **la app nunca se cierra**:
 | `30` | "Si tu perro fuera humano tendría 210 años" |
 
 > 💡 Con el teclado numérico no puedes escribir `abc` ni `-4`. ¿Cómo comprobarías que el `try/catch` funciona? (Pista: quita `inputType` un momento.)
+Quité la línea android:id="@+id/age_input" del EditText de activity_main.xml para que me dejara usar otra vez el teclado normal. Puse "abc" del cuál solo me dejo pone "ab" debido al límite de dos cifras que asginamos antes y me saltón un error diciendo que solo puedo usar números enterios.
 
 ## Paso 12 · Guarda y sube tu trabajo
 
