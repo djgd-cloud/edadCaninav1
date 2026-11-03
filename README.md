@@ -76,6 +76,8 @@ En `res/values/strings.xml` añade tres textos nuevos:
 
 > ❓ ¿Qué significan `%1$d` y `%2$d`? ¿En qué orden se rellenan?
 
+%1$d representa el primer número entero que se proporciona, mientras que %2$d representa el segundo número entero que se proporciona.
+
 ## Paso 5 · Restringe la entrada desde el layout
 
 En el `EditText` (`@+id/age_input`) añade:
