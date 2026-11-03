@@ -33,15 +33,18 @@ Antes de arreglar nada, comprueba qué falla. Prueba estas entradas y anota qué
 
 | Entrada | ¿Qué ocurre? |
 |---|---|
-| *(campo vacío)* | |
-| `abc` | |
-| `3.5` | |
-| `0` | |
-| `-4` | |
-| `99999999999` | |
-| `400000000` | |
+| *(campo vacío)* | Se cierra la aplicación |
+| `abc` | Se cierra la aplicación |
+| `3.5` | Se cierra la aplicación |
+| `0` | Te dice que tu perro tiene 0 años|
+| `-4` | Te dice que tu perro tiene -28 años |
+| `99999999999` | Se cierra la aplicación |
+| `400000000` | Te dice que tu perro tiene -1494967296 años |
 
 > 💡 Cuando la app se cierre, abre el **Logcat** y busca la excepción. ¿Qué método la lanza? ¿Por qué el último caso no cierra la app pero da un resultado absurdo?
+
+En el caso del campo vacío se lanza NumerFormatException, que me dice que ha intentado convertir un número vacío en un número entero.
+Porque 400000000 x 7 = 2800000000, pero como se multiplica por un int, los valores de este solo pueden ser desde −2.147.483.648 a 2.147.483.648, por lo que el resultado será 1494967296.
 
 ## Paso 2 · Crea la rama de trabajo
 
