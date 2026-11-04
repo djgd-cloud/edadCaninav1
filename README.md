@@ -33,15 +33,18 @@ Antes de arreglar nada, comprueba qué falla. Prueba estas entradas y anota qué
 
 | Entrada | ¿Qué ocurre? |
 |---|---|
-| *(campo vacío)* | |
-| `abc` | |
-| `3.5` | |
-| `0` | |
-| `-4` | |
-| `99999999999` | |
-| `400000000` | |
+| *(campo vacío)* | Se cierra la aplicación |
+| `abc` | Se cierra la aplicación |
+| `3.5` | Se cierra la aplicación |
+| `0` | Te dice que tu perro tiene 0 años|
+| `-4` | Te dice que tu perro tiene -28 años |
+| `99999999999` | Se cierra la aplicación |
+| `400000000` | Te dice que tu perro tiene -1494967296 años |
 
 > 💡 Cuando la app se cierre, abre el **Logcat** y busca la excepción. ¿Qué método la lanza? ¿Por qué el último caso no cierra la app pero da un resultado absurdo?
+
+En el caso del campo vacío se lanza NumerFormatException, que me dice que ha intentado convertir un número vacío en un número entero.
+Porque 400000000 x 7 = 2800000000, pero como se multiplica por un int, los valores de este solo pueden ser desde −2.147.483.648 a 2.147.483.648, por lo que el resultado será 1494967296.
 
 ## Paso 2 · Crea la rama de trabajo
 
@@ -72,6 +75,8 @@ En `res/values/strings.xml` añade tres textos nuevos:
 ```
 
 > ❓ ¿Qué significan `%1$d` y `%2$d`? ¿En qué orden se rellenan?
+
+%1$d representa el primer número entero que se proporciona, mientras que %2$d representa el segundo número entero que se proporciona.
 
 ## Paso 5 · Restringe la entrada desde el layout
 
@@ -122,6 +127,7 @@ resultText = findViewById(R.id.result_text);
 ```
 
 > ❓ ¿Qué pasaría si dejaras `EditText ageEdit = findViewById(...)` dentro de `onCreate()`?
+Si declaras ageEdit como atributo de clase, pero también mantienes EditText ageEdit dentro de onCreate(), estarías creando dos variables diferentes con el mismo nombre.
 
 ## Paso 8 · Saca la lógica del botón a un método
 
@@ -157,6 +163,7 @@ Implementa el método siguiendo este orden. En cuanto algo falle, llama a `mostr
 5. **Todo correcto**: quita el error del campo (`setError(null)`), calcula `age * FACTOR_CANINO` y muestra el resultado con `tu_edad_format`.
 
 > ❓ ¿Por qué limitar la edad a 30 evita también el desbordamiento que viste en el Paso 1?
+Porque ahora cuando me salga un número mayor a 30, en vez de cerra la aplicación, saltará un mensaje dando el error que ha surgido y como solucionarlo especificando que máximo se puede poner 30 años-
 
 ## Paso 11 · Vuelve a probar
 
@@ -171,6 +178,7 @@ Comprueba que **la app nunca se cierra**:
 | `30` | "Si tu perro fuera humano tendría 210 años" |
 
 > 💡 Con el teclado numérico no puedes escribir `abc` ni `-4`. ¿Cómo comprobarías que el `try/catch` funciona? (Pista: quita `inputType` un momento.)
+Quité la línea android:id="@+id/age_input" del EditText de activity_main.xml para que me dejara usar otra vez el teclado normal. Puse "abc" del cuál solo me dejo pone "ab" debido al límite de dos cifras que asginamos antes y me saltón un error diciendo que solo puedo usar números enterios.
 
 ## Paso 12 · Guarda y sube tu trabajo
 
