@@ -10,28 +10,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.databinding.DataBindingUtil;
+import es.davante.edadcanina.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
-        // Declaramos variables
-        EditText ageEdit = findViewById(R.id.age_input);
-        TextView resultText = findViewById(R.id.result_text);
-        Button button1 = findViewById(R.id.btn_calc);
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         // Implementar el boton (setOnClickListener)
-        button1.setOnClickListener(view -> {
+        binding.btnCalc.setOnClickListener(view -> {
 
-            String ageString = ageEdit.getText().toString();
+            String ageString = binding.ageInput.getText().toString();
             int age = Integer.parseInt(ageString);
             int dogAge = age * 7;
-            resultText.setText(getString(R.string.tu_edad_format, dogAge));
+            binding.resultText.setText(getString(R.string.tu_edad_format, dogAge));
         });
 
 
