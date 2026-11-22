@@ -9,7 +9,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "es.davante.edadcanina"
+        applicationId = "es.davante.edadcanina.mvc"
         minSdk = 24
         targetSdk = 37
         versionCode = 1
@@ -25,6 +25,11 @@ android {
             }
         }
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
