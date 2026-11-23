@@ -1,15 +1,8 @@
 package es.davante.edadcanina;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 import es.davante.edadcanina.databinding.ActivityMainBinding;
 import es.davante.edadcanina.modelo.EdadCaninaModelo;
@@ -26,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setModelo(modelo);
 
         binding.btnCalc.setOnClickListener(view -> {
-            modelo.setTexto(binding.ageInput.getText().toString());
             Validacion resultado = modelo.calcular();
 
             switch (resultado) {
                 case CORRECTO:
-                    binding.resultText.setText(getString(R.string.tu_edad_format, modelo.getEdadHumana()));
+                    binding.ageInput.setError(null);
                     break;
                 case VACIO:
                     binding.ageInput.setError("Introduce una edad");
