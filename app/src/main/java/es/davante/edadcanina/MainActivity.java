@@ -21,26 +21,7 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setModelo(modelo);
 
-        binding.btnCalc.setOnClickListener(view -> {
-            Validacion resultado = modelo.calcular();
-
-            switch (resultado) {
-                case CORRECTO:
-                    binding.ageInput.setError(null);
-                    break;
-                case VACIO:
-                    binding.ageInput.setError("Introduce una edad");
-                    break;
-                case NO_ES_NUMERO:
-                    binding.ageInput.setError("Introduce un número");
-                    break;
-                case FUERA_DE_RANGO:
-                    binding.ageInput.setError("Fuera de rango");
-                    break;
-                default:
-                    break;
-            }
-        });
+        binding.btnCalc.setOnClickListener(view -> modelo.calcular());
 
     }
 }

@@ -57,6 +57,7 @@
         android:textSize="48sp"
         android:hint="Ejemplo: 6"
         android:id="@+id/age_input"
+        app:errorValidacion="@{modelo.validacion}"
         />
 
  <TextView
